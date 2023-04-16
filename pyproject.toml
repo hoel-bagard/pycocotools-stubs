@@ -68,6 +68,7 @@ docstring-quotes = "double"
 
 [tool.pyright]
 include = ["src/pycocotools-stubs"]
+ignore = ["src/pycocotools-stubs/__init__.pyi"]
 
 strictListInference = true
 strictDictionaryInference = true
