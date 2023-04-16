@@ -5,8 +5,7 @@ import numpy as np
 import numpy.typing as npt
 from typing_extensions import Self
 
-from .coco_types import Annotation, AnnotationG, Category, Dataset, EncodedRLE, Image, RLE, TPolygon_segmentation
-
+from .coco_types import Annotation, AnnotationG, Category, Dataset, EncodedRLE, Image, RLE, TPolygonSegmentation
 
 class COCO:
     anns: dict[int, Annotation]
@@ -16,7 +15,7 @@ class COCO:
     imgToAnns: dict[int, list[Annotation]]
     catToImgs: dict[int, list[int]]
 
-    def __init__(self, annotation_file: str | Path = ...) -> None:
+    def __init__(self: Self, annotation_file: str | Path = ...) -> None:
         """Constructor of Microsoft COCO helper class for reading and visualizing annotations.
 
         Args:
@@ -24,15 +23,15 @@ class COCO:
         """
         ...
 
-    def createIndex(self) -> None:
+    def createIndex(self: Self) -> None:
         ...
 
-    def info(self) -> None:
+    def info(self: Self) -> None:
         """Print information about the annotation file.
         """
         ...
 
-    def getAnnIds(self, imgIds: list[int] | int = ..., catIds: list[int] | int = ..., areaRng: list[float] = ..., iscrowd: bool | None = ...) -> list[int]:
+    def getAnnIds(self: Self, imgIds: list[int] | int = ..., catIds: list[int] | int = ..., areaRng: list[float] = ..., iscrowd: bool | None = ...) -> list[int]:
         """Get ann ids that satisfy given filter conditions. default skips that filter.
 
         Args:
@@ -46,7 +45,7 @@ class COCO:
         """
         ...
 
-    def getCatIds(self, catNms: list[str] | str = ..., supNms: list[str] | str = ..., catIds: list[int] | int = ...) -> list[int]:
+    def getCatIds(self: Self, catNms: list[str] | str = ..., supNms: list[str] | str = ..., catIds: list[int] | int = ...) -> list[int]:
         """Get cat ids that satisfy given filter conditions. default skips that filter.
 
         Args:
@@ -59,7 +58,7 @@ class COCO:
         """
         ...
 
-    def getImgIds(self, imgIds: list[int] | int = ..., catIds: list[int] | int = ...) -> list[int]:
+    def getImgIds(self: Self, imgIds: list[int] | int = ..., catIds: list[int] | int = ...) -> list[int]:
         """Get img ids that satisfy given filter conditions.
 
         Args:
@@ -71,7 +70,7 @@ class COCO:
         """
         ...
 
-    def loadAnns(self, ids: list[int] | int = ...) -> list[Annotation]:
+    def loadAnns(self: Self, ids: list[int] | int = ...) -> list[Annotation]:
         """Load anns with the specified ids.
 
         Args:
@@ -82,7 +81,7 @@ class COCO:
         """
         ...
 
-    def loadCats(self, ids: list[int] | int = ...) -> list[Category]:
+    def loadCats(self: Self, ids: list[int] | int = ...) -> list[Category]:
         """Load cats with the specified ids.
 
         Args:
@@ -93,7 +92,7 @@ class COCO:
         """
         ...
 
-    def loadImgs(self, ids: list[int] | int = ...) -> list[Image]:
+    def loadImgs(self: Self, ids: list[int] | int = ...) -> list[Image]:
         """Load anns with the specified ids.
 
         Args:
@@ -104,7 +103,7 @@ class COCO:
         """
         ...
 
-    def showAnns(self, anns: list[Annotation], draw_bbox: bool = ...) -> None:
+    def showAnns(self: Self, anns: list[Annotation], draw_bbox: bool = ...) -> None:
         """Display the specified annotations.
 
         Args:
@@ -113,7 +112,7 @@ class COCO:
         """
         ...
 
-    def loadRes(self, resFile: str) -> Self:
+    def loadRes(self: Self, resFile: str) -> Self:
         """Load result file and return a result api object.
 
         Args:
@@ -124,7 +123,7 @@ class COCO:
         """
         ...
 
-    def download(self, tarDir: str | None = ..., imgIds: list[int] = ...) -> Literal[-1] | None:
+    def download(self: Self, tarDir: str | None = ..., imgIds: list[int] = ...) -> Literal[-1] | None:
         """Download COCO images from mscoco.org server.
 
         Args:
@@ -133,7 +132,7 @@ class COCO:
         """
         ...
 
-    def loadNumpyAnnotations(self, data: npt.NDArray[np.float64]) -> list[Annotation]:
+    def loadNumpyAnnotations(self: Self, data: npt.NDArray[np.float64]) -> list[Annotation]:
         """Convert result data from a numpy array [Nx7] where each row contains {imageID,x1,y1,w,h,score,class}
 
         Args:
@@ -145,21 +144,21 @@ class COCO:
         ...
 
     @overload
-    def annToRLE(self, ann: AnnotationG[RLE]) -> RLE:
+    def annToRLE(self: Self, ann: AnnotationG[RLE]) -> RLE:
         """Convert annotation which can be polygons, uncompressed RLE to RLE."""
         ...
 
     @overload
-    def annToRLE(self, ann: AnnotationG[EncodedRLE]) -> EncodedRLE:
+    def annToRLE(self: Self, ann: AnnotationG[EncodedRLE]) -> EncodedRLE:
         """Convert annotation which can be polygons, uncompressed RLE to RLE."""
         ...
 
     @overload
-    def annToRLE(self, ann: AnnotationG[TPolygon_segmentation]) -> EncodedRLE:
+    def annToRLE(self: Self, ann: AnnotationG[TPolygonSegmentation]) -> EncodedRLE:
         """Convert annotation which can be polygons, uncompressed RLE to RLE."""
         ...
 
-    def annToMask(self, ann: Annotation) -> npt.NDArray[np.uint8]:
+    def annToMask(self: Self, ann: Annotation) -> npt.NDArray[np.uint8]:
         """Convert annotation which can be polygons, uncompressed RLE, or RLE to binary mask.
 
         Args:
