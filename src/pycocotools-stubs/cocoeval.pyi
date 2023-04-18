@@ -5,21 +5,21 @@ import numpy.typing as npt
 from typing_extensions import Self
 
 from .coco import COCO
-from .coco_types import EvaluationResult
+from .coco_types import _EvaluationResult
 
-T_IOU: TypeAlias = Literal["segm", "bbox", "keypoints"]
+_T_IOU: TypeAlias = Literal["segm", "bbox", "keypoints"]
 
 
 class COCOeval:
     cocoGt: COCO
     cocoDt: COCO
-    evalImgs: list[EvaluationResult]
-    eval: EvaluationResult
+    evalImgs: list[_EvaluationResult]
+    eval: _EvaluationResult
     params: Params
     stats: npt.NDArray[np.float64]
     ious: dict[tuple[int, int],  list[float]]
 
-    def __init__(self: Self, cocoGt: COCO | None = ..., cocoDt: COCO | None = ..., iouType: T_IOU = ...) -> None:
+    def __init__(self: Self, cocoGt: COCO | None = ..., cocoDt: COCO | None = ..., iouType: _T_IOU = ...) -> None:
         """Initialize CocoEval using coco APIs for gt and dt
 
         Args:
@@ -38,7 +38,7 @@ class COCOeval:
     def computeOks(self: Self, imgId: int, catId: int) -> npt.NDArray[np.float64]:
         ...
 
-    def evaluateImg(self: Self, imgId: int, catId: int, aRng: list[int], maxDet: int) -> EvaluationResult:
+    def evaluateImg(self: Self, imgId: int, catId: int, aRng: list[int], maxDet: int) -> _EvaluationResult:
         """Perform evaluation for single category and image.
 
         Returns:
@@ -76,10 +76,10 @@ class Params:
     areaRngLbl: list[str]
     useCats: int
     kpt_oks_sigmas: npt.NDArray[np.float64]
-    iouType: T_IOU
+    iouType: _T_IOU
     useSegm: int | None
 
-    def __init__(self: Self, iouType: T_IOU = ...) -> None:
+    def __init__(self: Self, iouType: _T_IOU = ...) -> None:
         ...
 
     def setDetParams(self: Self) -> None:
