@@ -17,6 +17,8 @@ This stubs are different on two points:
 
 ## Installation
 
+The package is available on pypi [here](https://pypi.org/project/pycocotools-stubs/) you can install it with:
+
 ```
 pip install pycocotools-stubs
 ```
