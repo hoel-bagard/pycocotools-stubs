@@ -1,11 +1,11 @@
-from typing import Literal, TypeAlias
+from typing import Literal, TypeAlias, TypedDict
 
 import numpy as np
 import numpy.typing as npt
 from typing_extensions import Self
 
 from .coco import COCO
-from .coco_types import _EvaluationResult
+from .coco_types import _ImageEvaluationResult
 
 _T_IOU: TypeAlias = Literal["segm", "bbox", "keypoints"]
 
@@ -13,7 +13,7 @@ _T_IOU: TypeAlias = Literal["segm", "bbox", "keypoints"]
 class COCOeval:
     cocoGt: COCO
     cocoDt: COCO
-    evalImgs: list[_EvaluationResult]
+    evalImgs: list[_ImageEvaluationResult]
     eval: _EvaluationResult
     params: Params
     stats: npt.NDArray[np.float64]
@@ -38,7 +38,7 @@ class COCOeval:
     def computeOks(self: Self, imgId: int, catId: int) -> npt.NDArray[np.float64]:
         ...
 
-    def evaluateImg(self: Self, imgId: int, catId: int, aRng: list[int], maxDet: int) -> _EvaluationResult:
+    def evaluateImg(self: Self, imgId: int, catId: int, aRng: list[int], maxDet: int) -> _ImageEvaluationResult:
         """Perform evaluation for single category and image.
 
         Returns:
@@ -72,7 +72,7 @@ class Params:
     iouThrs: npt.NDArray[np.float64]
     recThrs: npt.NDArray[np.float64]
     maxDets: list[int]
-    areaRng: list[int]
+    areaRng: list[float]
     areaRngLbl: list[str]
     useCats: int
     kpt_oks_sigmas: npt.NDArray[np.float64]
@@ -87,3 +87,12 @@ class Params:
 
     def setKpParams(self: Self) -> None:
         ...
+
+
+class _EvaluationResult(TypedDict):
+    params: Params
+    counts: list[int]
+    date: str
+    precision: npt.NDArray[np.float64]
+    recall: npt.NDArray[np.float64]
+    scores: npt.NDArray[np.float64]

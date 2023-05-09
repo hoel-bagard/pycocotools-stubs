@@ -51,7 +51,7 @@ class _Category(TypedDict):
     supercategory: str
 
 
-class _EvaluationResult(TypedDict):
+class _ImageEvaluationResult(TypedDict):
     image_id: int
     category_id: int
     aRng: list[int]
