@@ -8,16 +8,16 @@
 ![Linting](https://github.com/hoel-bagard/pycocotools-stubs/actions/workflows/pre-commit.yaml/badge.svg)
 
 
-Unofficial python stubs for the pycocotools package.
+Unofficial python stubs for the [pycocotools package](https://pypi.org/project/pycocotools/).
 
-An equivalents stubs is available on [typeshed](https://github.com/python/typeshed/tree/main/stubs/pycocotools) (and therefore [pypi](https://pypi.org/project/pycocotools/)).\
+An equivalents stubs is available on [typeshed](https://github.com/python/typeshed/tree/main/stubs/pycocotools).
 This stubs are different on two points:
 - They include the docstrings as they are otherwise not available in the IDE (as far as I know).
 - They include numpy typing (not possible to do in typeshed).
 
 ## Installation
 
-The package is available on pypi [here](https://pypi.org/project/pycocotools-stubs/) you can install it with:
+The package is available on pypi [here](https://pypi.org/project/pycocotools-stubs/), you can install it with:
 
 ```
 pip install pycocotools-stubs
