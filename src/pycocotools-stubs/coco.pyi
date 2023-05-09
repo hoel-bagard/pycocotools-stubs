@@ -16,7 +16,7 @@ class COCO:
     imgToAnns: dict[int, list[_AnnotationAny]]
     catToImgs: dict[int, list[int]]
 
-    def __init__(self: Self, annotation_file: str | Path | None = ...) -> None:
+    def __init__(self: Self, annotation_file: str | Path | None = None) -> None:
         """Constructor of Microsoft COCO helper class for reading and visualizing annotations.
 
         Args:
@@ -31,7 +31,7 @@ class COCO:
         """Print information about the annotation file."""
         ...
 
-    def getAnnIds(self: Self, imgIds: Collection[int] | int = ..., catIds: Collection[int] | int = ..., areaRng: Sequence[float] = ..., iscrowd: bool | None = ...) -> list[int]:
+    def getAnnIds(self: Self, imgIds: Collection[int] | int = [], catIds: Collection[int] | int = [], areaRng: Sequence[float] = [], iscrowd: bool | None = None) -> list[int]:
         """Get ann ids that satisfy given filter conditions. default skips that filter.
 
         Args:
@@ -45,7 +45,7 @@ class COCO:
         """
         ...
 
-    def getCatIds(self: Self, catNms: Collection[str] | str = ..., supNms: Collection[str] | str = ..., catIds: Sequence[int] | int = ...) -> list[int]:
+    def getCatIds(self: Self, catNms: Collection[str] | str = [], supNms: Collection[str] | str = [], catIds: Sequence[int] | int = []) -> list[int]:
         """Get cat ids that satisfy given filter conditions. default skips that filter.
 
         Args:
@@ -58,7 +58,7 @@ class COCO:
         """
         ...
 
-    def getImgIds(self: Self, imgIds: Collection[int] | int = ..., catIds: list[int] | int = ...) -> list[int]:
+    def getImgIds(self: Self, imgIds: Collection[int] | int = [], catIds: list[int] | int = []) -> list[int]:
         """Get img ids that satisfy given filter conditions.
 
         Args:
@@ -70,7 +70,7 @@ class COCO:
         """
         ...
 
-    def loadAnns(self: Self, ids: Collection[int] | int = ...) -> list[_AnnotationAny]:
+    def loadAnns(self: Self, ids: Collection[int] | int = []) -> list[_AnnotationAny]:
         """Load anns with the specified ids.
 
         Args:
@@ -81,7 +81,7 @@ class COCO:
         """
         ...
 
-    def loadCats(self: Self, ids: Collection[int] | int = ...) -> list[_Category]:
+    def loadCats(self: Self, ids: Collection[int] | int = []) -> list[_Category]:
         """Load cats with the specified ids.
 
         Args:
@@ -92,7 +92,7 @@ class COCO:
         """
         ...
 
-    def loadImgs(self: Self, ids: Collection[int] | int = ...) -> list[_Image]:
+    def loadImgs(self: Self, ids: Collection[int] | int = []) -> list[_Image]:
         """Load anns with the specified ids.
 
         Args:
@@ -103,7 +103,7 @@ class COCO:
         """
         ...
 
-    def showAnns(self: Self, anns: Sequence[_AnnotationAny], draw_bbox: bool = ...) -> None:
+    def showAnns(self: Self, anns: Sequence[_AnnotationAny], draw_bbox: bool = False) -> None:
         """Display the specified annotations.
 
         Args:
@@ -123,7 +123,7 @@ class COCO:
         """
         ...
 
-    def download(self: Self, tarDir: str | None = ..., imgIds: Collection[int] = ...) -> Literal[-1] | None:
+    def download(self: Self, tarDir: str | None = None, imgIds: Collection[int] = []) -> Literal[-1] | None:
         """Download COCO images from mscoco.org server.
 
         Args:

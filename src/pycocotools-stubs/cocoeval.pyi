@@ -19,7 +19,7 @@ class COCOeval:
     stats: npt.NDArray[np.float64]
     ious: dict[tuple[int, int],  list[float]]
 
-    def __init__(self: Self, cocoGt: COCO | None = ..., cocoDt: COCO | None = ..., iouType: _T_IOU = ...) -> None:
+    def __init__(self: Self, cocoGt: COCO | None = None, cocoDt: COCO | None = None, iouType: _T_IOU = "segm") -> None:
         """Initialize CocoEval using coco APIs for gt and dt
 
         Args:
@@ -46,7 +46,7 @@ class COCOeval:
         """
         ...
 
-    def accumulate(self: Self, p: Params | None = ...) -> None:
+    def accumulate(self: Self, p: Params | None = None) -> None:
         """Accumulate per image evaluation results and store the result in self.eval
 
         Args:
@@ -79,7 +79,7 @@ class Params:
     iouType: _T_IOU
     useSegm: int | None
 
-    def __init__(self: Self, iouType: _T_IOU = ...) -> None:
+    def __init__(self: Self, iouType: _T_IOU = "segm") -> None:
         ...
 
     def setDetParams(self: Self) -> None:
