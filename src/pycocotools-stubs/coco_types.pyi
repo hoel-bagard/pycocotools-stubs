@@ -23,7 +23,7 @@ class _COCO_RLE(TypedDict):
     counts: str | bytes
 
 
-_T_Seg = TypeVar("_T_Seg", _TPolygonSegmentation, _RLE, _COCO_RLE)
+_T_Seg = TypeVar("_T_Seg", _TPolygonSegmentation, _RLE, _COCO_RLE, _TPolygonSegmentation | _RLE | _COCO_RLE)
 
 
 class _Annotation(TypedDict, Generic[_T_Seg]):
@@ -42,7 +42,7 @@ class _Annotation(TypedDict, Generic[_T_Seg]):
     iscrowd: Literal[0] | Literal[1]
 
 
-_AnnotationAny: TypeAlias = _Annotation[_TPolygonSegmentation] | _Annotation[_RLE] | _Annotation[_COCO_RLE]
+_AnnotationAny: TypeAlias = _Annotation[_TPolygonSegmentation | _RLE | _COCO_RLE]
 
 
 class _Category(TypedDict):
